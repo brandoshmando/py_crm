@@ -1,5 +1,3 @@
-import sys
-import os
 import prompt_text
 class Crm:
   def __init__(self, name):
@@ -15,6 +13,5 @@ class Crm:
 
   def user_input(self):
     return raw_input(prompt_text.ARROW)
-
 
 Crm("Rolodex")
