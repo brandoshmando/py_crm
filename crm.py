@@ -8,10 +8,13 @@ class Crm:
 
   def main_prompt(self):
     self.print_prompt(prompt_text.MAIN)
-    # self.user_input()
+    self.user_input()
 
   def print_prompt(self, prompt):
     print(prompt)
+
+  def user_input(self):
+    return raw_input('--->')
 
 
 Crm("Rolodex")
