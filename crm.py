@@ -1,6 +1,17 @@
+import sys
+import os
+import prompt_text
 class Crm:
   def __init__(self, name):
     self.name = name
-    # rolodex = Rolodex.new()
+    self.main_prompt()
+
+  def main_prompt(self):
+    self.print_prompt(prompt_text.MAIN)
+    # self.user_input()
+
+  def print_prompt(self, prompt):
+    print(prompt)
+
 
 Crm("Rolodex")
