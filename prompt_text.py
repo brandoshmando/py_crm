@@ -5,3 +5,5 @@ MAIN ="""                Main Menu
   [2] Browse Contacts
   [3] Edit existing Contact
   [4] Exit"""
+
+ARROW = '--->'

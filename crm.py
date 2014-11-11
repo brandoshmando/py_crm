@@ -14,7 +14,7 @@ class Crm:
     print(prompt)
 
   def user_input(self):
-    return raw_input('--->')
+    return raw_input(prompt_text.ARROW)
 
 
 Crm("Rolodex")
