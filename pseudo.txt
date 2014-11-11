@@ -1,0 +1,17 @@
+CRM
+  -attributes:
+    *rolodex
+  -methods:
+    *method caller
+    *interface methods
+
+Rolodex
+  -attributes:
+    *cards
+
+Cards
+  -attributes:
+    *first_name
+    *last_name
+    *email
+    *phone_number
