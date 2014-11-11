@@ -3,7 +3,7 @@ class Rolodex:
     self.data = []
 
   def add_contact(self, contact):
-    self.data.append(contact())
+    self.data.append(contact)
 
   def all_contacts(self):
     return self.data()
