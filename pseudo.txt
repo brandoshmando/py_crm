@@ -3,11 +3,14 @@ CRM
     *rolodex
   -methods:
     *method caller
-    *interface methods
+    *new contact
 
 Rolodex
   -attributes:
     *cards
+  -methods:
+    add_contact
+
 
 Cards
   -attributes:
