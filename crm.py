@@ -1,7 +1,8 @@
 import sys
 import prompt_text
 import rolodex
-import contact
+from contact import Contact
+
 class Crm:
   def __init__(self, name):
     self.name = name
@@ -16,7 +17,7 @@ class Crm:
   def option_caller(self, option):
     options = {
                 1: self.new_contact(),
-                # 2: self.all_contacts(),
+                2: self.display_contacts(),
                 # 3: self.edit_contact(),
                 4: sys.exit
                 }
@@ -40,8 +41,28 @@ class Crm:
     self.print_prompt(prompt_text.CONTACT_PHONE)
     phone = self.user_input()
 
-    new_contact = contact.Contact(first_name, last_name, email, phone)
+    new_contact = Contact(first_name, last_name, email, phone)
 
-    self.rolodex.add_contact(contact)
+    self.rolodex.add_contact(new_contact)
+
+  def display_contacts(self):
+    contacts = self.rolodex.contacts
+
+    if not contacts:
+      print_prompt(prompt_text.EMPTY)
+    else:
+      for contact in contacts:
+        self.format_contact(contact)
+
+  def format_contact(self, contact):
+    print """
+    %(last)s, %(first)s
+    -----------------
+    Email: %(email)s
+    -----------------
+    Phone Number: %(phone)s
+    """ % \
+    { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone}
+
 
 Crm("Rolodex")
