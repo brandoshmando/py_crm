@@ -10,6 +10,7 @@ class Crm:
     self.main_prompt()
 
   def main_prompt(self):
+    self.clear_term()
     self.print_prompt(prompt_text.MAIN)
     option = self.user_input()
     self.option_caller(option)
@@ -63,6 +64,9 @@ class Crm:
     Phone Number: %(phone)s
     """ % \
     { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone}
+
+  def clear_term(self):
+    print chr(27) + "[2J"
 
 
 Crm("Rolodex")
