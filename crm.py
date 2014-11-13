@@ -18,7 +18,7 @@ class Crm:
   def option_caller(self, option):
     options = { 1: self.new_contact,
                 2: self.display_contacts,
-                3: "self.edit_contact",
+                3: self.edit_contact,
                 4: sys.exit }
     options[int(option)]()
 
@@ -47,27 +47,50 @@ class Crm:
 
   def display_contacts(self):
     contacts = self.rolodex.contacts
-    counter = 1
     if not contacts:
       self.print_prompt(prompt_text.EMPTY)
     else:
-      for contact in contacts:
-        self.format_contact(contact,counter)
-        counter+=1
+      for idx, contact in enumerate(contacts):
+      self.format_contact(contact, idx)
 
-  def format_contact(self, contact, counter):
+  def format_contact(self, contact, index):
     print """
     -----------------
-    [%(count)s] %(last)s, %(first)s
+    [%(idx)s] %(last)s, %(first)s
     -----------------
     Email: %(email)s
     -----------------
     Phone Number: %(phone)s
     """ % \
-    { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone, "count":counter}
+    { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone, "idx": index+1}
+
+  def edit_contact(self):
+    self.display_contacts()
+    self.print_prompt(prompt_text.SELECT_CONTACT)
+    contact_id = int(self.user_input())
+    contact = self.rolodex.data[contact_id - 1]
+    field = select_field()
+    value = new_value()
+    fields = { 1: contact.first_name,
+               2: contact.last_name,
+               3: contact.email,
+               4: contact.phone}
+    fields[field] = value
+
+  def select_field(self):
+    print_prompt(prompt_text.FIELDS)
+    return user_input()
+
+  def new_value(self):
+    print_prompt(prompt_text.NEW_VAL)
+    return user_input()
 
   def clear_term(self):
     print chr(27) + "[2J"
 
+  def hold(self):
+    print_prompt(prompt_text.HOLD)
+    self.user_input()
+    main_prompt()
 
 Crm("Rolodex")

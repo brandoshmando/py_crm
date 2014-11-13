@@ -17,3 +17,18 @@ CONTACT_EMAIL = "Enter the Contact's email:"
 CONTACT_PHONE = "Enter the Contact's phone:"
 
 EMPTY = "You currently have no contacts to list!"
+
+SELECT_CONTACT = """Enter the Contact's # that you
+would like to edit:"""
+
+FIELDS = """
+Please select which field you would like to edit:
+[1] First name
+[2] Last name
+[3] Email
+[4] Phone
+"""
+
+NEW_VAL = "Please enter the new value you would like:"
+
+HOLD = "Press enter to return to the main menu..."
