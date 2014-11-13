@@ -2,6 +2,7 @@ import sys
 import prompt_text
 import rolodex
 from contact import Contact
+from IPython import embed
 
 class Crm:
   def __init__(self, name):
@@ -10,10 +11,11 @@ class Crm:
     self.main_prompt()
 
   def main_prompt(self):
-    self.clear_term()
-    self.print_prompt(prompt_text.MAIN)
-    option = self.user_input()
-    self.option_caller(option)
+    while True:
+      self.clear_term()
+      self.print_prompt(prompt_text.MAIN)
+      option = int(self.user_input())
+      self.option_caller(option)
 
   def option_caller(self, option):
     options = { 1: self.new_contact,
@@ -44,14 +46,17 @@ class Crm:
     new_contact = Contact(first_name, last_name, email, phone)
 
     self.rolodex.add_contact(new_contact)
+    return
 
   def display_contacts(self):
+
     contacts = self.rolodex.contacts
     if not contacts:
       self.print_prompt(prompt_text.EMPTY)
+      self.hold()
     else:
       for idx, contact in enumerate(contacts):
-      self.format_contact(contact, idx)
+        self.format_contact(contact, idx)
 
   def format_contact(self, contact, index):
     print """
@@ -78,8 +83,13 @@ class Crm:
     fields[field] = value
 
   def select_field(self):
-    print_prompt(prompt_text.FIELDS)
-    return user_input()
+    self.print_prompt(prompt_text.FIELDS)
+    selection = int(self.user_input())
+    while True:
+      if selection < 1 and selection > 4:
+        self.print_prompt(prompt_text.INVALID_SELECTION)
+      else:
+        return selection
 
   def new_value(self):
     print_prompt(prompt_text.NEW_VAL)
@@ -89,8 +99,8 @@ class Crm:
     print chr(27) + "[2J"
 
   def hold(self):
-    print_prompt(prompt_text.HOLD)
+    self.print_prompt(prompt_text.HOLD)
     self.user_input()
-    main_prompt()
+    return
 
 Crm("Rolodex")

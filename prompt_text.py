@@ -32,3 +32,5 @@ Please select which field you would like to edit:
 NEW_VAL = "Please enter the new value you would like:"
 
 HOLD = "Press enter to return to the main menu..."
+
+INVALID_SELECTION = "Please enter a valid selction:"
