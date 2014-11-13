@@ -16,12 +16,8 @@ class Crm:
     self.option_caller(option)
 
   def option_caller(self, option):
-    options = {
-                1: self.new_contact(),
-                2: self.display_contacts(),
-                # 3: self.edit_contact(),
-                4: sys.exit
-                }
+    options = { 1: self.new_contact, 2: self.display_contacts, 3: "self.edit_contact()", 4: sys.exit }
+    options[int(option)]
 
   def print_prompt(self, prompt):
     print(prompt)
