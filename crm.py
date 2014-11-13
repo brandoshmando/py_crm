@@ -16,8 +16,11 @@ class Crm:
     self.option_caller(option)
 
   def option_caller(self, option):
-    options = { 1: self.new_contact, 2: self.display_contacts, 3: "self.edit_contact()", 4: sys.exit }
-    options[int(option)]
+    options = { 1: self.new_contact,
+                2: self.display_contacts,
+                3: "self.edit_contact",
+                4: sys.exit }
+    options[int(option)]()
 
   def print_prompt(self, prompt):
     print(prompt)
@@ -44,22 +47,24 @@ class Crm:
 
   def display_contacts(self):
     contacts = self.rolodex.contacts
-
+    counter = 1
     if not contacts:
-      print_prompt(prompt_text.EMPTY)
+      self.print_prompt(prompt_text.EMPTY)
     else:
       for contact in contacts:
-        self.format_contact(contact)
+        self.format_contact(contact,counter)
+        counter+=1
 
-  def format_contact(self, contact):
+  def format_contact(self, contact, counter):
     print """
-    %(last)s, %(first)s
+    -----------------
+    [%(count)s] %(last)s, %(first)s
     -----------------
     Email: %(email)s
     -----------------
     Phone Number: %(phone)s
     """ % \
-    { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone}
+    { "first": contact.first_name,"last": contact.last_name,"email": contact.email, "phone": contact.phone, "count":counter}
 
   def clear_term(self):
     print chr(27) + "[2J"
